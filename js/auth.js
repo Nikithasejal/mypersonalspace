@@ -24,6 +24,10 @@ function clearSession(){
   localStorage.removeItem(SESSION_KEY);
 }
 
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 function getLoggedInUsers(){
   return JSON.parse(localStorage.getItem(LOGGED_USERS_KEY) || '[]');
 }
@@ -61,6 +65,21 @@ function enableAuthButton() {
   }
 }
 
+function showMessage(msg, type = 'error') {
+  const el = document.getElementById('authMessage');
+  if (el) {
+    el.textContent = msg;
+    el.style.color = type === 'error' ? 'crimson' : 'green';
+  } else {
+    alert(msg);
+  }
+}
+
+function clearMessage(){
+  const el = document.getElementById('authMessage');
+  if (el) el.textContent = '';
+}
+
 function register(){
   const nameField = document.getElementById('name');
   const emailField = document.getElementById('email');
@@ -71,26 +90,30 @@ function register(){
     password: passwordField ? passwordField.value : ''
   };
   if (!u.name || !u.email || !u.password) {
-    alert('Please fill name, email, and password.');
+    showMessage('Please fill name, email, and password.', 'error');
+    return;
+  }
+  if (!isValidEmail(u.email)) {
+    showMessage('Please enter a valid email address.', 'error');
     return;
   }
   disableAuthButton();
   if (u.email === ADMIN_EMAIL) {
-    alert('This email is reserved for admin. Choose another email.');
+    showMessage('This email is reserved for admin. Choose another email.', 'error');
     enableAuthButton();
     return;
   }
   const users = getUsers();
   if (users.some(user => user.email === u.email)) {
-    alert('This email is already registered. Please login.');
+    showMessage('This email is already registered. Please login.', 'error');
     enableAuthButton();
     return;
   }
   u.registeredAt = new Date().toISOString();
   users.push(u);
   setUsers(users);
-  alert('Registered successfully. You can now login.');
-  location = 'login.html';
+  showMessage('Registered successfully. Redirecting to login...', 'success');
+  setTimeout(() => { location = 'login.html'; }, 900);
 }
 
 function login(){
@@ -99,7 +122,11 @@ function login(){
   const enteredEmail = emailField ? emailField.value.trim().toLowerCase() : '';
   const enteredPassword = passwordField ? passwordField.value : '';
   if (!enteredEmail || !enteredPassword) {
-    alert('Please enter both email and password.');
+    showMessage('Please enter both email and password.', 'error');
+    return;
+  }
+  if (!isValidEmail(enteredEmail)) {
+    showMessage('Please enter a valid email address.', 'error');
     return;
   }
   disableAuthButton();
@@ -115,7 +142,7 @@ function login(){
     addLoggedInUser(user.email);
     location = 'dashboard.html';
   } else {
-    alert('Invalid credentials');
+    showMessage('Invalid credentials', 'error');
     enableAuthButton();
   }
 }
@@ -125,10 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const path = location.pathname.toLowerCase();
 
   if (path.endsWith('register.html')) {
-    if (session) {
-      location = session.role === 'admin' ? 'admin.html' : 'dashboard.html';
-      return;
-    }
+    // Allow logged-in users to access registration if they want to create another account.
   }
 
   if (path.endsWith('login.html')) {

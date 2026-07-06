@@ -1,1 +1,20 @@
-<!doctype html><html><head><link rel="stylesheet" href="css/style.css"></head><body><div class="register-container"><div class="form-box"><h2>Register</h2><input id="name" type="text" autocomplete="name" placeholder="Name"><input id="email" type="email" autocomplete="email" placeholder="Email"><input id="password" type="password" autocomplete="new-password" placeholder="Password"><button id="authBtn" type="button" onclick="register()">Register</button></div></div><script src="js/auth.js"></script></body></html>
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <div class="register-container">
+    <div class="form-box">
+      <h2>Register</h2>
+      <input id="name" type="text" autocomplete="name" placeholder="Name">
+      <input id="email" type="email" autocomplete="email" placeholder="Email">
+      <input id="password" type="password" autocomplete="new-password" placeholder="Password">
+      <button id="authBtn" type="button" onclick="register()">Register</button>
+      <p id="authMessage" style="min-height:1.2em;color:crimson;margin-top:8px"></p>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+</body>
+</html>
