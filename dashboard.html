@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+<header>
+    <nav>
+        <h2>💜 <span id="userName">Guest</span></h2>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Notes">Your Notes</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" id="logoutLink" style="display:none">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+
+  
+
+    <h1>Hi,<span id="fullName"></span></h1>
+
+    <p>
+        This is your personal space
+    </p>
+
+    <a href="#Notes" class="btn">Saved Notes</a>
+
+</section>
+
+<section id="About">
+
+<h2>About Us</h2>
+
+<p>
+Hello! I'm <span id="aboutName"></span> — this is a personal space to write about your life, your days, and every single thought.
+</p>
+<p>
+Your Secret is safe here 💜
+</p>
+
+</section>
+<section id="Notes">
+
+<h2>Your Notes</h2>
+<div class="notes-panel">
+    <div class="note-entry">
+        <textarea id="noteText" placeholder="Type a message here to read later" rows="14"></textarea>
+        <label class="file-label" for="attachmentInput">Add attachment (image or document)</label>
+        <input id="attachmentInput" type="file" accept="image/*,.pdf,.doc,.docx,.txt" />
+        <button id="saveNoteBtn" class="btn">Save Note</button>
+        <p id="noteStatus" class="note-status"></p>
+    </div>
+    <div class="note-history">
+        <div class="note-history-header">
+            <h3>Saved Notes</h3>
+            <div class="note-history-actions">
+                <button id="clearNotesBtn" class="btn small">Clear All</button>
+                <button id="clearRecentBtn" class="btn small">Clear Recent</button>
+            </div>
+        </div>
+        <div id="notesList" class="notes-list">
+            <p class="empty-notes">No saved notes yet.</p>
+        </div>
+    </div>
+</div>
+
+</section>
+
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<p><strong>Please visit us on below links provided</strong></p>
+
+<a class="btn"
+href="https://github.com/deshnasaanvii-pixel"
+target="_blank">
+
+Visit My GitHub →
+</a>
+
+
+<a class="btn"
+href="https://www.linkedin.com/in/your-linkedin-profile"
+target="_blank">
+Visit My LinkedIn →
+
+</a>
+</section>
+
+<footer>
+
+<p>Made by <span>Nikitha 💜 </span></p>
+</footer>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

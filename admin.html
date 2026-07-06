@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="#users">Registered Users</a></li>
+            <li><a href="#logged">Logged-In Users</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" id="logoutLink" style="display:none">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <h1>Welcome, <span id="adminWelcome">Admin</span></h1>
+    <p>This page shows registered users and currently logged-in accounts. User notes are private and not visible to admin.</p>
+</section>
+
+<section id="users">
+    <h2>Registered Users</h2>
+    <ul id="registeredUsers" class="admin-list">
+        <li>No users registered.</li>
+    </ul>
+</section>
+
+<section id="logged">
+    <h2>Currently Logged In</h2>
+    <ul id="loggedUsers" class="admin-list">
+        <li>No users currently logged in.</li>
+    </ul>
+</section>
+
+<footer>
+    <p>Made by <span>Nikitha</span></p>
+</footer>
+
+<script src="js/auth.js"></script>
+</body>
+</html>
